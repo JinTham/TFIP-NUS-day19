@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>News Report</title>
+    </head>
+    <body>
+        <h1>News Headlines for <span data-th-text="${newsList.country}"></span></h1>
+        <div>
+            <h4 data-th-each="news: ${newsList.newsList}">
+                From: <span data-th-text="${news.author}"></span><br>
+                Title: <span data-th-text="${news.title}"></span><br>
+                description: <span data-th-text="${news.description}"></span>
+                <hr>
+            </h4>
+            <h4><a data-th-href="@{/}">Back</a></h4>
+        </div>
+    </body>
+</html>
