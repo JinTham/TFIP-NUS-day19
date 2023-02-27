@@ -11,11 +11,13 @@
         <div>
             <h4 data-th-each="news: ${newsList.newsList}">
                 From: <span data-th-text="${news.author}"></span><br>
-                Title: <span data-th-text="${news.title}"></span><br>
+                Title: <a href=""><span data-th-text="${news.title}"></span></a><br>
                 description: <span data-th-text="${news.description}"></span>
                 <hr>
             </h4>
             <h4><a data-th-href="@{/}">Back</a></h4>
+            <br><br>
+            <a href="/news/searchLog">Search History log</a>
         </div>
     </body>
 </html>

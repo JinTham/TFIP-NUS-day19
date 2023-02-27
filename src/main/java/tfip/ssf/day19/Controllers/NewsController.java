@@ -1,7 +1,7 @@
 package tfip.ssf.day19.Controllers;
 
+import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +22,16 @@ public class NewsController {
     public String getMapNews(Model model, @RequestParam String country, String keyword) {
         Optional<NewsList> opt = newsSvc.getNews(country, keyword);
         NewsList newsList = opt.get();
+        newsSvc.saveHist(country, keyword, newsList);
         model.addAttribute("newsList", newsList);
         return "newsPage";
+    }
+
+    @GetMapping(path="/searchLog")
+    public String getSearchLog(Model model) {
+        List<String> searchLog = newsSvc.getSearchHist();
+        model.addAttribute("searchLog",searchLog);
+        return "searchHistPage";
     }
 
 }

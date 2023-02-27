@@ -1,8 +1,10 @@
 package tfip.ssf.day19.Model;
 
-    import jakarta.json.JsonObject;
+    import java.io.Serializable;
 
-    public class News {
+import jakarta.json.JsonObject;
+
+    public class News implements Serializable{
         private String author;
         private String title;
         private String description;

@@ -1,9 +1,10 @@
 package tfip.ssf.day19.Model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NewsList {
+public class NewsList implements Serializable {
     private List<News> newsList = new LinkedList<>();
     private String status;
     private Integer totalResults;

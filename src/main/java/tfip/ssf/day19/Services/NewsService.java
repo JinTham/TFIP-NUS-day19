@@ -1,8 +1,9 @@
 package tfip.ssf.day19.Services;
 
 import java.io.StringReader;
+import java.util.List;
 import java.util.Optional;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -18,11 +19,23 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import tfip.ssf.day19.Model.News;
 import tfip.ssf.day19.Model.NewsList;
+import tfip.ssf.day19.Repository.NewsRepo;
 
 @Service
 public class NewsService {
     @Value("${news.key}")
     private String apiKey;
+
+    @Autowired
+    private NewsRepo newsRepo;
+    
+    public void saveHist(String country, String keyword, NewsList newsList){
+        newsRepo.saveHist(country, keyword, newsList);
+    }
+
+    public List<String> getSearchHist(){
+        return newsRepo.getSearchHist();
+    }
     
     public Optional<NewsList> getNews(String country, String keyword) {
         //Send request entity to News API website
@@ -50,7 +63,7 @@ public class NewsService {
             statusCode = ex.getStatusCode().value();
             return Optional.empty();
         } finally {
-            //System.out.printf("Status code: %d\n", statusCode);
+            System.out.printf("Status code: %d\n", statusCode);
             //System.out.printf("Payload: %s\n", payload);
         }
 
